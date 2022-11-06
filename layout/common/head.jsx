@@ -175,7 +175,6 @@ module.exports = class extends Component {
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script> : null}
 
             {followItVerificationCode ? <meta name="follow.it-verification-code" content={followItVerificationCode} /> : null}
-            <script defer data-domain="blog.caomingjun.com" src="https://analytics.caomingjun.com/js/plausible.js"></script>
         </head>;
     }
 };
