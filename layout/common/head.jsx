@@ -1,4 +1,4 @@
-const { Component } = require('inferno');
+const { Component, Fragment } = require('inferno');
 const MetaTags = require('hexo-component-inferno/lib/view/misc/meta');
 const WebApp = require('hexo-component-inferno/lib/view/misc/web_app');
 const OpenGraph = require('hexo-component-inferno/lib/view/misc/open_graph');
@@ -31,7 +31,7 @@ function getPageTitle(page, siteTitle, helper) {
 module.exports = class extends Component {
     render() {
         const { site, config, helper, page } = this.props;
-        const { url_for, cdn, fontcdn, iconcdn, is_post } = helper;
+        const { full_url_for, url_for, cdn, fontcdn, iconcdn, is_post } = helper;
         const {
             url,
             head = {},
@@ -124,6 +124,10 @@ module.exports = class extends Component {
             {meta && meta.length ? <MetaTags meta={meta} /> : null}
 
             <title>{getPageTitle(page, config.title, helper)}</title>
+
+            {page.alterLang ? <Fragment>{Object.entries(page.alterLang).map(([lang, url]) => {
+                return <link rel="alternate" hreflang={lang} href={full_url_for(url)} />
+            })}</Fragment> : null}
 
             <WebApp.Cacheable
                 helper={helper}
