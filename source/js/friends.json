@@ -1,7 +1,0 @@
-{
-    "friends.json missing": {
-        "url": "https://example.com/missing",
-        "img": "https://example.com/missing.jpg",
-        "text": "Please add a friends.json file to /source/js/ to enable this feature."
-    }
-}

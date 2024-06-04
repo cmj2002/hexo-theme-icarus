@@ -14,17 +14,31 @@
         }
         getFor(function() {
             targetTemp.innerHTML = content;
-            target.getElementById("apps-links-load-tips").style.display='none',
+            target.getElementById("apps-links-load-tips").style.display='none';
             target.getElementById("apps-links-info").style.display='block';
         })
     },
+    loadmissing = function() {
+        targetTemp.innerHTML = '<p class="title tips">请在 /source/js/friends.json 中添加友链信息以启用此功能！</p>';
+        target.getElementById("apps-links-load-tips").style.display='none';
+        target.getElementById("apps-links-info").style.display='block';
+    },
     loadwerror = function() {
         targetTemp.innerHTML = '<p class="title tips">加载失败，请 <a href="/links/">刷新</a> 重试！</p>'
+        target.getElementById("apps-links-load-tips").style.display='none';
+        target.getElementById("apps-links-info").style.display='block';
     },
     (load = new XMLHttpRequest).open("GET", encodeURI(jsonTarget), !0),
     load.onload = function() {
         var e;
-        200 <= load.status && load.status < 300 || 304 === load.status ? (e = JSON.parse(load.responseText), name(e)) : loadwerror()
+        if (load.status === 404) {
+            getFor(loadmissing);
+        } else if (200 <= load.status && load.status < 300 || 304 === load.status) {
+            e = JSON.parse(load.responseText);
+            name(e);
+        } else {
+            getFor(loadwerror);
+        }
     },
     load.timeout = 4500,
     load.ontimeout = blogLink,
