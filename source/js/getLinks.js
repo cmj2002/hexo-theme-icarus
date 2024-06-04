@@ -10,9 +10,7 @@
             if (blogLink.endsWith("/")) {
                 blogLink = blogLink.substring(0,blogLink.length - 1);
             }          
-            // content += (name = o, blogLink, imageUrl = count.img, slogan = count.text, '<article class="media"><a class="media-left" href="' + count.url + '"><p class="image is-64x64"><img class="thumbnail" src="' + imageUrl + '" alt="' + name + '" ' +   'onerror="javascript:this.src=\'img/loading.gif\';"'   + ' ></p></a><div class="media-content size-small"><p class="is-uppercase"><a class="link-muted" href="' + count.url + '">' + blogLink + '</a></p><p class="title is-6"><a class="link-muted" href="' + count.url + '">' + name + '</a></p><p class="is-uppercase"><a class="link-muted" href="' + count.url + '">' + slogan + '</a></p></div></article>')              
-            // 相比原来删除了大写
-            content += (name = o, blogLink, imageUrl = count.img, slogan = count.text, `<article class="media"><a class="media-left" href="${count.url}"><p class="image is-64x64"><img class="thumbnail" src="${imageUrl}" alt="${name}" onerror="javascript:this.src='img/loading.gif';"></p></a><div class="media-content size-small"><p><a class="link-muted" href="${count.url}">${blogLink}</a></p><p class="title is-6"><a class="link-muted" href="${count.url}">${name}</a></p><p><a class="link-muted" href="${count.url}">${slogan}</a></p></div></article>`)
+            content += (name = o, blogLink, imageUrl = count.img, slogan = count.text, `<article class="media"><a class="media-left" href="${count.url}" target="_blank"><p class="image is-64x64"><img class="thumbnail" src="${imageUrl}" alt="${name}" onerror="javascript:this.src='img/loading.gif';"></p></a><div class="media-content size-small"><p><a class="link-muted" href="${count.url}" target="_blank">${blogLink}</a></p><p class="title is-6"><a class="link-muted" href="${count.url}" target="_blank">${name}</a></p><p><a class="link-muted" href="${count.url}" target="_blank">${slogan}</a></p></div></article>`)
         }
         getFor(function() {
             targetTemp.innerHTML = content;
